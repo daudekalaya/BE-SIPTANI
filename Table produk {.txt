@@ -1,0 +1,47 @@
+Table produk {
+  id string
+  title string
+  description string
+  full_desription text
+  image string
+  caategory_id int
+  price int
+  url string
+}
+
+Table keranjang {
+  id int
+  product_id string
+  qty int
+  session_id string
+}
+
+Table transaksi {
+  id string
+  trs_number string
+  product_id string
+  qty int
+}
+
+Table customer {
+  id int
+  email string
+  first_name string
+  last_name string
+  alamat text
+  phone text
+  trs_id string
+}
+
+Table kategori {
+  id int
+  name string
+}
+
+Ref: "keranjang"."product_id" < "produk"."id"
+
+Ref: "transaksi"."product_id" < "produk"."id"
+
+Ref: "produk"."caategory_id" < "kategori"."id"
+
+Ref: "customer"."trs_id" < "transaksi"."id"
